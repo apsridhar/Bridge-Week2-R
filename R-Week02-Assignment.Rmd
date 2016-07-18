@@ -1,0 +1,81 @@
+---
+title: "Week2 R Assignment. An Alternative to choose()"
+author: "Sridhar AlwarsamyPerumalsamy"
+date: "July 16, 2016"
+output: html_document
+---
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+ 
+Implement an alternative to choose() function.  n! / (( n – r)! * r!) (Combinations without Repetition)
+
+What is Permutation and Combination.?
+
+1.If the order doesn't matter, it is a Combination.<br>
+2.If the order does matter it is a Permutation.
+
+<u>Formulas related to permutaion and combination</u>
+
+Permutations with Repetition <bR>
+<pre>n!</pre>
+
+Permutations without Repetition <br>
+<pre> n!/(n-r)!</pre>
+
+Combinations without Repetition. [Choose() function in R]<br>
+<pre>n! / (( n – r)! * r!) </pre>
+
+##Implement an alternative to choose() function.  n! / (( n – r)! * r!)
+
+<pre>We name the new function as chooseCombination().</pre>
+
+```{r  echo=TRUE}
+findfact <- function(x) {
+  if (x == 0 || x == 1) {
+      1
+  }
+  else{
+     x * factorial(x - 1)
+  }
+  }
+
+chooseCombination <- function(numberofElements, subElements){
+  #compute using the formula n! / (( n – r)! * r!).
+  value= findfact(numberofElements)/(findfact(numberofElements-subElements)* findfact(subElements))
+  print(paste('chooseCombination(', numberofElements, ',', subElements, '):', value))
+  
+}
+
+```
+
+<h2>Test  chooseCombination() and Verify with choose()</h2>
+```{r echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+#Test 
+chooseCombination(10,5)
+#Verify with choose()
+print(paste('choose(10,5):', choose(10,5)))
+
+#Test 
+chooseCombination(20,6)
+#Verify with choose()
+print(paste('choose(20,6):', choose(20,6)))
+#Test
+chooseCombination(30,7)
+#Verify with choose()
+print(paste('choose(30,7):', choose(30,7)))
+#Test
+chooseCombination(40,8)
+#Verify with choose()
+print(paste('choose(40,8):', choose(40,8)))
+#Test
+chooseCombination(50,9)
+#Verify with choose()
+print(paste('choose(50,9):', choose(50,9)))
+
+```
+
+
+
